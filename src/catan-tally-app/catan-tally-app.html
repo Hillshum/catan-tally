@@ -29,7 +29,12 @@
 
     <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError"></firebase-auth>
 
-    <button id="login-button" class="btn-primary btn" on-tap="_login">Login</button>
+    <template is="dom-if" if="{{!_isLoggedIn(user)}}">
+      <button id="login-button" class="btn-primary btn" on-tap="_login">Login</button>
+    </template>
+    <template is="dom-if" if="{{_isLoggedIn(user)}}">
+      <button id="logout-button" class="btn-primary btn" on-tap="_logout">Logout</button>
+    </template>
 
     <div class="players-list">
       <div class="player">
@@ -81,6 +86,14 @@
 
       _login: function() {
         this.$.auth.signInWithPopup();
+      },
+
+      _logout() {
+        return this.$.auth.signOut();
+      },
+
+      _isLoggedIn(user) {
+        return !!user;
       }
 
     });
