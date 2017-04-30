@@ -4,14 +4,19 @@
   <template>
     <style>
       :host {
-        display: block;
+        display: flex;
+        flex-direction: column;
+      }
+      input {
+        margin: 20px;
       }
     </style>
 
+
     <firebase-document path="/players/{{user.id}}" data="{{count}}"></firebase-document>
-    <button id="increment" on-tap="increment">Increment</button>
+    <button id="increment" class="btn btn-primary" on-tap="increment">Increment</button>
     <input type=text disabled value='{{count}}' />
-    <button id="decrement" on-tap="decrement">Decrement</button>
+    <button id="decrement" class="btn btn-primary" on-tap="decrement">Decrement</button>
   </template>
 
   <script>
