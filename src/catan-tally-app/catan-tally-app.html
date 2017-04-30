@@ -1,0 +1,43 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../tally-counter/tally-counter.html">
+
+<!-- <link rel="stylesheet" href="./style.css"> -->
+
+<dom-module id="catan-tally-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .players-list {
+        display: flex;
+      }
+
+      .player {
+        margin-right: 20px;
+      }
+    </style>
+
+    <div class="players-list">
+      <div class="player">
+        <div class="player-header">Tally for Hilton</div>
+        <tally-counter></tally-counter>
+      </div>
+      <div class="player">
+        <div class="player-header">Tally for Kody</div>
+        <tally-counter></tally-counter>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'catan-tally-app',
+
+      properties: {
+      },
+
+    });
+  </script>
+</dom-module>

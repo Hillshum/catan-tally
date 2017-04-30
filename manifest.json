@@ -1,0 +1,6 @@
+{
+  "name": "catan-tally",
+  "short_name": "catan-tally",
+  "start_url": "/",
+  "display": "standalone"
+}

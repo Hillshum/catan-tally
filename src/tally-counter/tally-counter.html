@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="tally-counter">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <button id="increment" on-tap="increment">Increment</button>
+    <input type=text disabled value='{{count}}' />
+    <button id="decrement" on-tap="decrement">Decrement</button>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'tally-counter',
+
+      properties: {
+        count: {
+          type: Number,
+          value: 0
+        },
+      },
+
+      decrement: function() {
+        this.count--;
+      },
+
+      increment: function() {
+        this.count++;
+      },
+
+    });
+  </script>
+</dom-module>
