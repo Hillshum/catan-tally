@@ -1,7 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../tally-counter/tally-counter.html">
 
-<!-- <link rel="stylesheet" href="./style.css"> -->
+<link rel="import" href="../../bower_components/polymerfire/firebase-app-script.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-document.html">
 
 <dom-module id="catan-tally-app">
   <template>
@@ -18,25 +21,67 @@
       }
     </style>
 
+    <firebase-app
+      auth-domain="[[config.authDomain]]"
+      database-url="[[config.databaseURL]]"
+      api-key="[[config.apiKey]]">
+    </firebase-app>
+
+    <firebase-auth id="auth" user="{{user}}" provider="google" on-error="handleError"></firebase-auth>
+
+    <button id="login-button" on-tap="_login">Login</button>
+
     <div class="players-list">
       <div class="player">
         <div class="player-header">Tally for Hilton</div>
-        <tally-counter></tally-counter>
+        <tally-counter user={{hiltonUser}}></tally-counter>
       </div>
       <div class="player">
         <div class="player-header">Tally for Kody</div>
-        <tally-counter></tally-counter>
+        <tally-counter user="{{kodyUser}}"></tally-counter>
       </div>
     </div>
   </template>
 
   <script>
+  var config = {
+    apiKey: "AIzaSyAIk7BAcpIlZqGpNTugm9pUwSIZzj6DP4s",
+    authDomain: "catan-tally.firebaseapp.com",
+    databaseURL: "https://catan-tally.firebaseio.com",
+    projectId: "catan-tally",
+    storageBucket: "catan-tally.appspot.com",
+    messagingSenderId: "103639347557"
+  };
+
+
     Polymer({
 
       is: 'catan-tally-app',
 
       properties: {
+
+        config: {
+          type: Object,
+          readOnly: true,
+          value: function() {return config},
+        },
+
+        hiltonUser: {
+          type: Object,
+          readOnly: true,
+          value: function() {return {id:"hilton"}}
+        },
+
+        kodyUser: {
+          type: Object,
+          readOnly: true,
+          value: function() {return {id:"kody"}}
+        },
       },
+
+      _login: function() {
+        this.$.auth.signInWithPopup();
+      }
 
     });
   </script>

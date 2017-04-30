@@ -8,6 +8,7 @@
       }
     </style>
 
+    <firebase-document path="/players/{{user.id}}" data="{{count}}"></firebase-document>
     <button id="increment" on-tap="increment">Increment</button>
     <input type=text disabled value='{{count}}' />
     <button id="decrement" on-tap="decrement">Decrement</button>
@@ -21,7 +22,10 @@
       properties: {
         count: {
           type: Number,
-          value: 0
+          value: 0,
+          notify: true,
+          observer: '_countObserver',
+
         },
       },
 
@@ -31,6 +35,10 @@
 
       increment: function() {
         this.count++;
+      },
+
+      _countObserver(newValue, oldValue) {
+        console.log(newValue)
       },
 
     });
