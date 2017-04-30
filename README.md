@@ -2,6 +2,8 @@
 
 This is how Hilton and Kody keep track of their overall Catan scores with each other
 
+It's horridly hacky, with hard-coded stuff everywhere and the user page is ugly, but it works.
+
 
 
 ## Install the Polymer-CLI
